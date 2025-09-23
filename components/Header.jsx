@@ -106,7 +106,7 @@ export default function Header() {
             {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center space-x-4">
               {[
-                { href: '/app', label: 'Home', icon: 'fa-home' },
+                { href: '/home', label: 'Home', icon: 'fa-home' },
                 { href: '/about', label: 'About Us', icon: 'fa-info-circle' },
                 { href: '/services', label: 'Services', icon: 'fa-shield-alt' },
                 { href: '/regions', label: 'Regions', icon: 'fa-map-marker-alt' },
@@ -203,7 +203,7 @@ export default function Header() {
             <i className="fas fa-times"></i>
           </button>
           {[
-            { href: '/app', label: 'Home' },
+            { href: '/home', label: 'Home' },
             { href: '/about', label: 'About Us' },
             { href: '/services', label: 'Services' },
             { href: '/regions', label: 'Regions' },
