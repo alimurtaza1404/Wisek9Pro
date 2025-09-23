@@ -20,7 +20,8 @@ import ClientSuccess from "../components/ClientSuccess";
 import Footer from "../components/Footer";
 import Script from "../components/Script";
 import OurGuards from "../components/OurGuards";
-
+import OurCommitment from "../components/OurCommitment";
+import ServicesArea from "../components/ServicesArea";
 
 export default function Home() {
   return (
@@ -29,11 +30,13 @@ export default function Home() {
       <MobileMenu />
       <Hero />
       <MainServices />
+      
       <AgencyBenefits />
       <CommitmentSection />
       {/* <About /> */}
       {/* <Services /> */}
       <Excellence />
+       <OurCommitment />
       <WhyChooseUs />
       <AccreditationSlider />
       <CounterSection />
@@ -45,6 +48,7 @@ export default function Home() {
       <ContactBanner />
       <OurGuards />
       <ClientSuccess />
+      <ServicesArea />
       <Footer />
       <Script />
     </>

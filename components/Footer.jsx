@@ -1,4 +1,5 @@
 'use client' 
+
 import { useEffect } from 'react';
 import Link from 'next/link';
 
@@ -75,7 +76,7 @@ export default function Footer() {
   return (
     <footer className="bg-black text-white py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Stats Counter */}
+        {/* Stats Counter
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12 text-center">
           <div className="counter">
             <div className="text-4xl font-bold text-red-500" data-count="87">
@@ -101,7 +102,7 @@ export default function Footer() {
             </div>
             <div className="text-sm">Years Experience</div>
           </div>
-        </div>
+        </div> */}
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           {/* Company Info */}

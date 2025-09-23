@@ -7,6 +7,15 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isMobile, setIsMobile] = useState(false); // ✅ Detect Mobile
+
+  // Detect if screen is mobile
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   // Add shadow effect on scroll
   useEffect(() => {
@@ -17,18 +26,14 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Load dark mode preference from localStorage on mount
+  // Load dark mode preference from localStorage
   useEffect(() => {
     const savedMode = localStorage.getItem('theme');
-    if (savedMode) {
-      setIsDarkMode(savedMode === 'dark');
-    }
-    console.log('Initial theme loaded at 06:45 PM PKT, Sep 19, 2025:', savedMode ? 'dark' : 'light');
+    if (savedMode) setIsDarkMode(savedMode === 'dark');
   }, []);
 
-  // Save dark mode preference to localStorage and apply to document
+  // Apply dark mode to document
   useEffect(() => {
-    console.log('Applying theme at 06:45 PM PKT, Sep 19, 2025:', isDarkMode ? 'dark' : 'light');
     if (isDarkMode) {
       document.documentElement.classList.add('dark');
       localStorage.setItem('theme', 'dark');
@@ -83,7 +88,7 @@ export default function Header() {
         id="header"
         className={`fixed top-10 w-full z-40 transition-all duration-500 ${
           scrolled ? 'bg-black/80 backdrop-blur-md shadow-md' : ''
-        } ${isDarkMode ? 'bg-gray-900' : 'bg-black'} ${isDarkMode ? 'text-gray-200' : 'text-white'}`}
+        } ${isDarkMode ? 'bg-gray-900 text-gray-200' : 'bg-black text-white'}`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
@@ -94,7 +99,7 @@ export default function Header() {
                 width={60}
                 height={60}
                 alt="WiseK9 Logo"
-                className={isDarkMode ? '' : 'invert'} // Invert logo in light mode for visibility
+                className={isDarkMode ? '' : 'invert'}
               />
             </div>
 
@@ -115,11 +120,7 @@ export default function Header() {
                     isDarkMode ? 'text-gray-200 hover:text-red-400' : 'text-white hover:text-red-500'
                   }`}
                 >
-                  <i
-                    className={`fas ${item.icon} mb-1 group-hover:scale-110 transition-transform ${
-                      isDarkMode ? 'text-gray-400' : 'text-gray-600'
-                    }`}
-                  ></i>
+                  <i className={`fas ${item.icon} mb-1 group-hover:scale-110 transition-transform`} />
                   {item.label}
                 </Link>
               ))}
@@ -140,63 +141,42 @@ export default function Header() {
                   }`}
                 >
                   <div className="py-2">
-                    <Link
-                      href="#blogs"
-                      className={`block px-4 py-3 ${
-                        isDarkMode ? 'text-gray-200 hover:text-red-400 hover:bg-red-500/10' : 'text-white hover:text-red-500 hover:bg-red-500/10'
-                      }`}
-                    >
-                      Blogs
-                    </Link>
-                    <Link
-                      href="https://wisek9.co.uk/careers"
-                      target="_blank"
-                      className={`block px-4 py-3 ${
-                        isDarkMode ? 'text-gray-200 hover:text-red-400 hover:bg-red-500/10' : 'text-white hover:text-red-500 hover:bg-red-500/10'
-                      }`}
-                    >
-                      Careers
-                    </Link>
-                    <Link
-                      href="https://wisek9.co.uk/quote"
-                      target="_blank"
-                      className={`block px-4 py-3 ${
-                        isDarkMode ? 'text-gray-200 hover:text-red-400 hover:bg-red-500/10' : 'text-white hover:text-red-500 hover:bg-red-500/10'
-                      }`}
-                    >
-                      Get Quote
-                    </Link>
-                    <Link
-                      href="https://wisek9.co.uk/training"
-                      target="_blank"
-                      className={`block px-4 py-3 ${
-                        isDarkMode ? 'text-gray-200 hover:text-red-400 hover:bg-red-500/10' : 'text-white hover:text-red-500 hover:bg-red-500/10'
-                      }`}
-                    >
-                      Training
-                    </Link>
-                    <Link
-                      href="https://wisek9.co.uk/support"
-                      target="_blank"
-                      className={`block px-4 py-3 ${
-                        isDarkMode ? 'text-gray-200 hover:text-red-400 hover:bg-red-500/10' : 'text-white hover:text-red-500 hover:bg-red-500/10'
-                      }`}
-                    >
-                      Support
-                    </Link>
+                    {[
+                      { href: '#blogs', label: 'Blogs' },
+                      { href: 'https://wisek9.co.uk/careers', label: 'Careers' },
+                      { href: 'https://wisek9.co.uk/quote', label: 'Get Quote' },
+                      { href: 'https://wisek9.co.uk/training', label: 'Training' },
+                      { href: 'https://wisek9.co.uk/support', label: 'Support' },
+                    ].map((item, index) => (
+                      <Link
+                        key={index}
+                        href={item.href}
+                        target={item.href.startsWith('http') ? '_blank' : undefined}
+                        className={`block px-4 py-3 ${
+                          isDarkMode
+                            ? 'text-gray-200 hover:text-red-400 hover:bg-red-500/10'
+                            : 'text-white hover:text-red-500 hover:bg-red-500/10'
+                        }`}
+                      >
+                        {item.label}
+                      </Link>
+                    ))}
                   </div>
                 </div>
               </div>
             </nav>
 
-            {/* Mobile Burger Menu and Theme Toggle */}
+            {/* Mobile Menu and Theme Toggle */}
             <div className="flex items-center space-x-4">
-              <button
-                onClick={() => setMobileMenuOpen(true)}
-                className="md:hidden text-white"
-              >
-                <i className="fas fa-bars text-2xl"></i>
-              </button>
+              {/* ✅ Show burger menu only if not using MobileMenu (on desktop) */}
+              {!isMobile && (
+                <button
+                  onClick={() => setMobileMenuOpen(true)}
+                  className="md:hidden text-white"
+                >
+                  <i className="fas fa-bars text-2xl"></i>
+                </button>
+              )}
               <button
                 onClick={() => setIsDarkMode(!isDarkMode)}
                 className="px-2 py-1 text-sm font-semibold rounded-full focus:outline-none transition-colors"
@@ -214,7 +194,7 @@ export default function Header() {
       </header>
 
       {/* Mobile Menu Overlay */}
-      {mobileMenuOpen && (
+      {mobileMenuOpen && !isMobile && (
         <div className={`fixed inset-0 ${isDarkMode ? 'bg-white-900/90' : 'bg-black/90'} backdrop-blur-lg z-50 flex flex-col items-center justify-center space-y-6`}>
           <button
             onClick={() => setMobileMenuOpen(false)}
@@ -222,7 +202,6 @@ export default function Header() {
           >
             <i className="fas fa-times"></i>
           </button>
-
           {[
             { href: '/app', label: 'Home' },
             { href: '/about', label: 'About Us' },

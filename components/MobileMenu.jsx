@@ -45,10 +45,10 @@ export default function MobileMenu({ isDarkMode }) {
         {[
           { label: "Home", href: "#hero", icon: <FaHome /> },
           { label: "About", href: "/about", icon: <FaInfoCircle /> },
-          { label: "Services", href: "#services", icon: <FaShieldAlt /> },
-          { label: "Regions", href: "#regions", icon: <FaMapMarkerAlt /> },
-          { label: "Cities", href: "#cities", icon: <FaCity /> },
-          { label: "Contact", href: "#contact", icon: <FaPhone /> },
+          { label: "Services", href: "/services", icon: <FaShieldAlt /> },
+          { label: "Regions", href: "/regions", icon: <FaMapMarkerAlt /> },
+          { label: "Cities", href: "/cities", icon: <FaCity /> },
+          { label: "Contact", href: "/contact", icon: <FaPhone /> },
         ].map((item, i) => (
           <Link
             key={i}
