@@ -43,7 +43,7 @@ export default function MobileMenu({ isDarkMode }) {
         shadow-[0_-2px_6px_rgba(0,0,0,0.3)]`}
       >
         {[
-          { label: "Home", href: "#hero", icon: <FaHome /> },
+          { label: "Home", href: "/", icon: <FaHome /> },
           { label: "About", href: "/about", icon: <FaInfoCircle /> },
           { label: "Services", href: "/services", icon: <FaShieldAlt /> },
           { label: "Regions", href: "/regions", icon: <FaMapMarkerAlt /> },
