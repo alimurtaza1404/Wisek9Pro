@@ -1,41 +1,42 @@
-'use client'
-import { useEffect } from 'react'
-import Link from 'next/link'
+"use client";
+import { useEffect } from "react";
+import Link from "next/link";
 
 export default function AgencyBenefits() {
   useEffect(() => {
-    const elements = document.querySelectorAll('.animate-on-scroll')
+    const elements = document.querySelectorAll(".animate-on-scroll");
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add('show')
+            entry.target.classList.add("show");
           } else {
-            entry.target.classList.remove('show') // re-animate when re-entered
+            entry.target.classList.remove("show"); // re-animate when re-entered
           }
-        })
+        });
       },
       { threshold: 0.3 }
-    )
-    elements.forEach((el) => observer.observe(el))
-    return () => observer.disconnect()
-  }, [])
+    );
+    elements.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <section className="relative py-20 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-stretch">
           {/* LEFT - TEXT */}
-          <div className="agency-benefits bg-white p-8 rounded-2xl shadow-xl animate-on-scroll slide-in-left h-full flex flex-col justify-center">
+          <div className="agency-benefits bg-white p-8 rounded-2xl shadow-xl animate-on-scroll slide-in-left flex flex-col justify-center h-full">
             <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6 leading-snug">
               We Have <span className="text-red-600">21 Years</span> of Experience
             </h2>
             <p className="text-gray-700 mb-4 leading-relaxed">
-              With over two decades in the security industry, we have built a reputation for 
-              delivering reliable, professional, and scalable security solutions across multiple sectors.
+              With over two decades in the security industry, we have built a reputation for
+              delivering reliable, professional, and scalable security solutions across multiple
+              sectors.
             </p>
             <p className="text-gray-700 mb-6 leading-relaxed">
-              Our SIA-licensed guards, advanced technology, and responsive support teams ensure your 
+              Our SIA-licensed guards, advanced technology, and responsive support teams ensure your
               people, assets, and events are protected 24/7 with precision and care.
             </p>
             <Link
@@ -47,17 +48,16 @@ export default function AgencyBenefits() {
           </div>
 
           {/* RIGHT - EMBEDDED VIDEO */}
-          <div className="relative animate-on-scroll slide-in-right h-full flex flex-col justify-center">
-            <div className="w-full h-[350px] md:h-[420px] rounded-2xl overflow-hidden shadow-2xl">
+          <div className="relative animate-on-scroll slide-in-right flex justify-center h-full">
+            <div className="w-full h-full rounded-2xl overflow-hidden shadow-2xl">
               <iframe
-                width="100%"
-                height="100%"
-                src="https://www.youtube.com/embed/G_G8SdXktHg?autoplay=0&mute=0&rel=0"
-                title="Security Experts in Action"
+                className="w-full h-full"
+                src="https://www.youtube.com/embed/-vdeUVjDK1s?si=vshnSgUp7lBjpm37"
+                title="YouTube video player"
                 frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
                 allowFullScreen
-                className="rounded-2xl"
               ></iframe>
             </div>
           </div>
@@ -76,15 +76,12 @@ export default function AgencyBenefits() {
           transform: translateX(50px);
           transition: opacity 0.8s ease-out, transform 0.8s ease-out;
         }
-        .slide-in-left.show {
-          opacity: 1;
-          transform: translateX(0);
-        }
+        .slide-in-left.show,
         .slide-in-right.show {
           opacity: 1;
           transform: translateX(0);
         }
       `}</style>
     </section>
-  )
+  );
 }
