@@ -91,9 +91,6 @@ export default function CommitmentSection() {
                     ['Corporate & Social Responsibility', '/wp-content/uploads/2024/09/corporative-social-responsibility-1.pdf'],
                     ['Environmental Policy', '/wp-content/uploads/2024/09/environmental-policy.pdf'],
                     ['Equality & Diversity Policy', '/wp-content/uploads/2024/09/EQUAL-OPPORTUNITIES-DIVERSITY-POLICY-2-copy.pdf'],
-                    ['Health & Safety General Policy', '/wp-content/uploads/2024/09/Health-and-Safety-General-Policy-copy.pdf'],
-                    ['Quality Policy', '/wp-content/uploads/2024/09/Quality-Policy-copy.pdf'],
-                    ['Privacy Policy', '/wp-content/uploads/2024/09/Privacy-Policy.pdf'],
                   ].map(([label, href], i) => (
                     <li key={i}>
                       <Link

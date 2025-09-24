@@ -55,7 +55,7 @@ export default function WhyChooseUs() {
           ].map((item, i) => (
             <div
               key={i}
-              className="why-card opacity-0 translate-y-8 bg-white/10 backdrop-blur-md p-6 rounded-xl shadow-lg hover:shadow-[0_8px_30px_rgba(255,0,0,0.4)] hover:scale-105 transition-all duration-500"
+              className="why-card opacity-0 translate-y-8 bg-white/10 backdrop-blur-md p-6 rounded-xl shadow-lg hover:shadow-white hover:scale-105 transition-all duration-500"
               style={{ transitionDelay: `${i * 150}ms` }}
             >
               <img src={item.icon} className="mx-auto w-16 mb-4" alt={item.title} />

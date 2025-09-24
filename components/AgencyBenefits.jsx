@@ -11,7 +11,7 @@ export default function AgencyBenefits() {
           if (entry.isIntersecting) {
             entry.target.classList.add('show')
           } else {
-            entry.target.classList.remove('show') // 🔄 Reset so it animates again when re-entered
+            entry.target.classList.remove('show') // re-animate when re-entered
           }
         })
       },
@@ -24,10 +24,9 @@ export default function AgencyBenefits() {
   return (
     <section className="relative py-20 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-stretch">
           {/* LEFT - TEXT */}
-          <div className="agency-benefits bg-white p-8 rounded-2xl shadow-xl animate-on-scroll slide-in-left">
+          <div className="agency-benefits bg-white p-8 rounded-2xl shadow-xl animate-on-scroll slide-in-left h-full flex flex-col justify-center">
             <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6 leading-snug">
               We Have <span className="text-red-600">21 Years</span> of Experience
             </h2>
@@ -41,28 +40,25 @@ export default function AgencyBenefits() {
             </p>
             <Link
               href="/contact"
-              className="inline-block bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg"
+              className="w-[160px] inline-block bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg"
             >
               Contact Us
             </Link>
           </div>
 
-          {/* RIGHT - IMAGE + PLAY BUTTON */}
-          <div className="relative animate-on-scroll slide-in-right">
-            <img
-              src="/assets2/customSecurity.jpg"
-              alt="Security Experts in Action"
-              className="w-full rounded-2xl shadow-2xl"
-            />
-            <div className="absolute inset-0 flex items-center justify-center">
-              <a
-                href="https://www.youtube.com/watch?v=G_G8SdXktHg"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white text-4xl bg-red-600 hover:bg-red-700 rounded-full p-5 shadow-xl transition-transform duration-300 hover:scale-110"
-              >
-                <i className="fa fa-play"></i>
-              </a>
+          {/* RIGHT - EMBEDDED VIDEO */}
+          <div className="relative animate-on-scroll slide-in-right h-full flex flex-col justify-center">
+            <div className="w-full h-[350px] md:h-[420px] rounded-2xl overflow-hidden shadow-2xl">
+              <iframe
+                width="100%"
+                height="100%"
+                src="https://www.youtube.com/embed/G_G8SdXktHg?autoplay=0&mute=0&rel=0"
+                title="Security Experts in Action"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="rounded-2xl"
+              ></iframe>
             </div>
           </div>
         </div>

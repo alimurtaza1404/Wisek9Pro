@@ -1,6 +1,12 @@
+// components/ServicesSection.tsx
 'use client'
-import { useEffect } from 'react'
 import Link from 'next/link'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { Pagination, Autoplay } from 'swiper/modules'
+
+// Import Swiper styles
+import 'swiper/css'
+import 'swiper/css/pagination'
 
 export default function ServicesSection() {
   const services = [
@@ -21,40 +27,42 @@ export default function ServicesSection() {
     {
       id: 3,
       title: 'Event Security',
-      image: '/assets2/service-01.jpg',
+      image: '/assets2/service-03.jpg',
       description:
         'Expert crowd management and conflict resolution for events across the UK, with custom security plans to ensure a safe environment for all attendees.',
     },
     {
       id: 4,
       title: '24/7 Monitoring',
-      image: '/assets2/service-03.jpg',
+      image: '/assets2/service-01.jpg',
       description:
         'Continuous monitoring with advanced technology and a 24/7 control room, offering rapid response and ongoing support for your security needs.',
     },
+    {
+      id: 5,
+      title: 'Canine Security (K9)',
+      image: '/assets2/service-01.jpg',
+      description:
+        'Professional K9 units trained for detection and deterrence, enhancing site security and ensuring maximum protection.',
+    },
+    {
+      id: 6,
+      title: 'Mobile Patrol',
+      image: '/assets2/service-02.jpg',
+      description:
+        'Rapid response patrol teams provide flexible, visible protection across multiple sites and territories, ensuring 24/7 vigilance.',
+    },
+    {
+      id: 7,
+      title: 'Cleaning & Staffing',
+      image: '/assets2/service-03.jpg',
+      description:
+        'Comprehensive cleaning and staffing services with vetted professionals, tailored to support your business needs.',
+    },
   ]
 
-  // 👀 Scroll-based Animation
-  useEffect(() => {
-    const cards = document.querySelectorAll('.service-card')
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('show')
-          } else {
-            entry.target.classList.remove('show') // re-animate on scroll back
-          }
-        })
-      },
-      { threshold: 0.2 }
-    )
-    cards.forEach((card) => observer.observe(card))
-    return () => observer.disconnect()
-  }, [])
-
   return (
-    <section className="relative py-16 overflow-hidden">
+    <section className="relative py-20 overflow-hidden">
       {/* 🔥 Animated Gradient Background */}
       <div className="absolute inset-0 animate-gradient bg-gradient-to-br from-black via-red-900 to-black opacity-90" />
 
@@ -70,45 +78,55 @@ export default function ServicesSection() {
           </p>
         </div>
 
-        {/* Services Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {services.map((service, i) => (
-            <div
-              key={service.id}
-              className="service-card opacity-0 translate-y-8 bg-white/90 rounded-xl shadow-lg backdrop-blur-md hover:shadow-red-500/30 hover:scale-105 transition-all duration-500"
-              style={{ transitionDelay: `${i * 150}ms` }}
-            >
-              <div className="thumb">
-                <Link href={`/services/${service.title.toLowerCase().replace(/ /g, '-')}`}>
-                  <img
-                    src={service.image}
-                    alt={`${service.title} img`}
-                    className="w-full h-48 object-cover rounded-t-xl"
-                  />
-                </Link>
-              </div>
-              <div className="content p-5 text-center">
-                <h4 className="text-xl font-bold text-gray-900 mb-2">
-                  <Link href={`/services/${service.title.toLowerCase().replace(/ /g, '-')}`}>
+        {/* ✅ Swiper Slider */}
+        <Swiper
+          modules={[Pagination, Autoplay]}
+          spaceBetween={30}
+          slidesPerView={1}
+          pagination={{ clickable: true }}
+          autoplay={{ delay: 2000, disableOnInteraction: false }}
+          speed={900}
+          loop={true}
+          breakpoints={{
+            640: { slidesPerView: 1 },
+            768: { slidesPerView: 2 },
+            1024: { slidesPerView: 3 },
+          }}
+          className="pb-16" // 👈 extra padding for dots
+        >
+          {services.map((service) => (
+            <SwiperSlide key={service.id}>
+              <div className="h-full flex flex-col bg-white/95 rounded-xl shadow-lg overflow-hidden hover:shadow-red-500/30 transition-all duration-500">
+                <img
+                  src={service.image}
+                  alt={service.title}
+                  className="w-full h-48 object-cover"
+                />
+                <div className="flex flex-col flex-grow p-6 text-center">
+                  <h4 className="text-xl font-bold text-gray-900 mb-2">
                     {service.title}
-                  </Link>
-                </h4>
-                <p className="text-gray-700 mb-4 text-sm">{service.description}</p>
-                <Link
-                  href={`/services/${service.title.toLowerCase().replace(/ /g, '-')}`}
-                  className="inline-block bg-red-600 hover:bg-red-700 text-white px-5 py-2 rounded-full font-semibold transition-transform hover:scale-110 shadow-md"
-                >
-                  READ MORE
-                </Link>
+                  </h4>
+                  {/* ✅ Equal height for descriptions */}
+                  <p className="text-gray-700 text-sm flex-grow min-h-[80px]">
+                    {service.description}
+                  </p>
+                  <div className="mt-6">
+                    <Link
+                      href={`/services/${service.title.toLowerCase().replace(/ /g, '-')}`}
+                      className="inline-block bg-red-600 hover:bg-red-700 text-white px-5 py-2 rounded-full font-semibold transition-transform hover:scale-110 shadow-md"
+                    >
+                      READ MORE
+                    </Link>
+                  </div>
+                </div>
               </div>
-            </div>
+            </SwiperSlide>
           ))}
-        </div>
+        </Swiper>
       </div>
 
       {/* Styles */}
       <style jsx>{`
-        /* Background Animation */
         @keyframes gradient-shift {
           0% {
             background-position: 0% 50%;
@@ -124,18 +142,6 @@ export default function ServicesSection() {
           background-size: 300% 300%;
           animation: gradient-shift 12s ease infinite;
         }
-
-        /* Fade + Slide Animation */
-        .service-card {
-          transform: translateY(30px);
-          transition: all 0.8s ease-out;
-        }
-        .service-card.show {
-          opacity: 1;
-          transform: translateY(0);
-        }
-
-        /* Heading Fade Animation */
         @keyframes fadeDown {
           0% {
             opacity: 0;
@@ -148,6 +154,23 @@ export default function ServicesSection() {
         }
         .animate-fade-down {
           animation: fadeDown 1s ease forwards;
+        }
+
+        /* 🎯 Custom pagination dots with red/black contrast */
+        :global(.swiper-pagination-bullets) {
+          bottom: -5px !important; /* push dots lower */
+        }
+        :global(.swiper-pagination-bullet) {
+          background: #000 !important; /* black for inactive */
+          opacity: 0.8;
+          width: 12px;
+          height: 12px;
+          transition: all 0.3s ease;
+        }
+        :global(.swiper-pagination-bullet-active) {
+          background: #ef4444 !important; /* red-600 */
+          transform: scale(1.2); /* make active dot bigger */
+          opacity: 1;
         }
       `}</style>
     </section>
