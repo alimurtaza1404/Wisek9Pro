@@ -4,7 +4,6 @@ import Link from "next/link";
 import Image from "next/image";
 
 export default function Header() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -97,25 +96,19 @@ export default function Header() {
           <div className="flex space-x-4">
             <a
               href="#"
-              className={
-                isDarkMode ? "hover:text-red-400" : "hover:text-red-500"
-              }
+              className={isDarkMode ? "hover:text-red-400" : "hover:text-red-500"}
             >
               <i className="fab fa-youtube"></i>
             </a>
             <a
               href="#"
-              className={
-                isDarkMode ? "hover:text-red-400" : "hover:text-red-500"
-              }
+              className={isDarkMode ? "hover:text-red-400" : "hover:text-red-500"}
             >
               <i className="fab fa-facebook"></i>
             </a>
             <a
               href="#"
-              className={
-                isDarkMode ? "hover:text-red-400" : "hover:text-red-500"
-              }
+              className={isDarkMode ? "hover:text-red-400" : "hover:text-red-500"}
             >
               <i className="fab fa-instagram"></i>
             </a>
@@ -204,59 +197,21 @@ export default function Header() {
               </div>
             </nav>
 
-            {/* Mobile Menu & Dark Mode */}
-            <div className="flex items-center space-x-4">
-              <button
-                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="md:hidden text-white text-2xl"
-              >
-                <i className="fas fa-bars"></i>
-              </button>
-              <button
-                onClick={() => setIsDarkMode(!isDarkMode)}
-                className="px-2 py-1 text-sm font-semibold rounded-full focus:outline-none transition-colors"
-                aria-label="Toggle dark mode"
-              >
-                {isDarkMode ? (
-                  <i className="fas fa-sun text-yellow-400"></i>
-                ) : (
-                  <i className="fas fa-moon text-white-600"></i>
-                )}
-              </button>
-            </div>
+            {/* Dark Mode Button (always visible) */}
+            <button
+              onClick={() => setIsDarkMode(!isDarkMode)}
+              className="px-2 py-1 text-sm font-semibold rounded-full focus:outline-none transition-colors"
+              aria-label="Toggle dark mode"
+            >
+              {isDarkMode ? (
+                <i className="fas fa-sun text-yellow-400"></i>
+              ) : (
+                <i className="fas fa-moon text-white"></i>
+              )}
+            </button>
           </div>
         </div>
       </header>
-
-      {/* Mobile Menu Overlay */}
-      {mobileMenuOpen && isMobile && (
-        <div
-          className={`fixed inset-0 ${
-            isDarkMode ? "bg-black/90" : "bg-black/90"
-          } backdrop-blur-lg z-50 flex flex-col items-center justify-center space-y-6`}
-        >
-          <button
-            onClick={() => setMobileMenuOpen(false)}
-            className="absolute top-4 right-4 text-white text-3xl"
-          >
-            <i className="fas fa-times"></i>
-          </button>
-          {navItems.concat(moreItems).map((item, i) => (
-            <Link
-              key={i}
-              href={item.href}
-              onClick={() => setMobileMenuOpen(false)}
-              className={`text-xl font-semibold hover:text-red-500 transition-all ${
-                isDarkMode
-                  ? "text-gray-200 hover:text-red-400"
-                  : "text-white hover:text-red-500"
-              }`}
-            >
-              {item.label}
-            </Link>
-          ))}
-        </div>
-      )}
     </>
   );
 }
