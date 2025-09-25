@@ -71,8 +71,7 @@ export default function CommitmentSection() {
                   To provide unmatched security that guarantees safety and security
                   to the residence and commercial facilities. We want to leave no
                   stone unturned to make our services reliable and trustworthy.
-                  To make it happen, we are ready to go an extra mile because your
-                  security is our only priority.
+                
                 </p>
               </motion.div>
             )}
