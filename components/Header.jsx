@@ -128,11 +128,7 @@ export default function Header() {
             {/* Logo */}
             <div className="flex-shrink-0">
               <Image
-                src={
-                  isDarkMode
-                    ? "/assets2/logowhite.png"
-                    : "/assets2/logowhite.png"
-                }
+                src="/assets2/logowhite.png"
                 width={60}
                 height={60}
                 alt="WiseK9 Logo"
@@ -195,6 +191,14 @@ export default function Header() {
                   </div>
                 </div>
               </div>
+
+              {/* 🔴 Admin Dashboard Button */}
+              <Link
+                href="/admin"
+                className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition"
+              >
+                Admin
+              </Link>
             </nav>
 
             {/* Dark Mode Button (always visible) */}
