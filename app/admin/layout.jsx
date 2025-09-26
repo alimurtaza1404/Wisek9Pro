@@ -11,7 +11,6 @@ export default function AdminLayout({ children }) {
     <html lang="en">
       <body className="flex min-h-screen bg-gradient-to-br from-black via-gray-900 to-black text-white">
         {/* Sidebar Toggle Button for Mobile */}
-        <h1>Hello</h1>
         <button
           className="md:hidden fixed top-4 left-4 z-50 p-2 bg-red-700 rounded text-white"
           onClick={() => setIsSidebarOpen(!isSidebarOpen)}
