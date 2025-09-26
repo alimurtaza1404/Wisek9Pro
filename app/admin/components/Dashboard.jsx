@@ -78,7 +78,7 @@ export default function Dashboard() {
         <h4 className="text-white font-semibold mb-4">Recent Activity</h4>
         <ul className="divide-y divide-gray-800 text-gray-300">
           <li className="py-3">
-            <span className="text-red-400 font-medium">New client registration</span>: Tesco Manchester – <span className="text-gray-400">2 hours ago</span>
+            <span className="text-red-400 font-medium">New client Registration</span>: Tesco Manchester – <span className="text-gray-400">2 hours ago</span>
           </li>
           <li className="py-3">
             <span className="text-red-400 font-medium">Guard shift started</span>: John Smith at Retail Park Leeds – <span className="text-gray-400">4 hours ago</span>
