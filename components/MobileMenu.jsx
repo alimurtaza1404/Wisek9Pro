@@ -63,7 +63,7 @@ export default function MobileMenu({ isDarkMode }) {
       </nav>
 
       {/* Spacer to prevent content overlap */}
-      <div className="h-20" />
+    
     </>
   );
 }

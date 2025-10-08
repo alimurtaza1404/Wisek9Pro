@@ -120,10 +120,10 @@ export default function Header() {
       <header
         id="header"
         className={`fixed top-10 w-full z-40 transition-all duration-500 ${
-          scrolled ? "bg-black/80 backdrop-blur-md shadow-md" : ""
+          scrolled ? "bg-black backdrop-blur-md shadow-md" : ""
         } ${isDarkMode ? "bg-gray-900 text-gray-200" : "bg-black text-white"}`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto  sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
             {/* Logo */}
             <div className="flex-shrink-0">

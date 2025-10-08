@@ -48,7 +48,7 @@ export default function AgencyBenefits() {
           </div>
 
           {/* RIGHT - EMBEDDED VIDEO */}
-          <div className="relative animate-on-scroll slide-in-right flex justify-center h-full">
+          <div className="relative  flex justify-center h-full">
             <div className="w-full h-full rounded-2xl overflow-hidden shadow-2xl">
               <iframe
                 className="w-full h-full"

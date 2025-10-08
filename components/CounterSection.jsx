@@ -48,7 +48,7 @@ export default function CounterSection() {
     <section
       className="relative py-20 bg-center bg-cover bg-no-repeat text-white overflow-hidden"
       style={{
-        backgroundImage: "url('assets2/counter-bg.jpg')", // ✅ Background Image
+        backgroundImage: "url('assets2/Mannguarding.jpg')", // ✅ Background Image
       }}
     >
       {/* Subtle Overlay Gradient */}
@@ -62,7 +62,7 @@ export default function CounterSection() {
             style={{ transitionDelay: `${i * 150}ms` }}
           >
             <span
-              className="counter text-5xl font-extrabold text-red-500 block mb-3 drop-shadow-lg"
+              className="counter text-5xl font-extrabold text-black block mb-3 drop-shadow-lg"
               data-count={item.number}
             >
               0
